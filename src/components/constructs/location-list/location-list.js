@@ -1,16 +1,12 @@
-import {
-  Wrapper,
-  ListTitle,
-  ListItem,
-  ItemContainer,
-} from "./location-list-style";
+import { Wrapper, ItemContainer } from "./location-list-style";
 
-const LocationList = ({ listTitle, list }) => (
+import Checkbox from "../checkbox";
+
+const LocationList = ({ list }) => (
   <Wrapper>
-    <ListTitle>{listTitle}</ListTitle>
     {list.map((item, index) => (
       <ItemContainer>
-        <ListItem key={index}>{item.name}</ListItem>
+        <Checkbox key={index} label={item.name} />
       </ItemContainer>
     ))}
   </Wrapper>

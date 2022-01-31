@@ -3,22 +3,27 @@ import FilterInput from "../filter-input";
 import PrimaryButton from "../../primitives/primary-button";
 import { ReactComponent as Search } from "../../../media/icons/search.svg";
 
-const Filter = ({ setShowFilter }) => (
+const Filter = ({ setActiveFilter }) => (
   <Wrapper>
     <FilterInput
-      setShowFilter={() => setShowFilter("location")}
+      setShowFilter={() => setActiveFilter("location")}
       label="Location"
-      subText="Select a city and district"
+      subText="Pick a location."
     />
     <FilterInput
-      setShowFilter={() => setShowFilter("date")}
+      setShowFilter={() => setActiveFilter("date")}
       label="Date"
       subText="On which day?"
     />
     <FilterInput
-      setShowFilter={() => setShowFilter("time")}
+      setShowFilter={() => setActiveFilter("time")}
       label="Time"
       subText="At what time?"
+    />
+    <FilterInput
+      setShowFilter={() => setActiveFilter("people")}
+      label="People"
+      subText="How many guests?"
     />
     <ButtonContainer>
       <PrimaryButton>

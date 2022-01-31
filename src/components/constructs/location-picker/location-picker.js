@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Wrapper,
   SearchContainer,
@@ -8,16 +10,24 @@ import {
 import SearchInput from "../search-input";
 import LocationList from "../location-list";
 
-const LocationPicker = () => (
-  <Wrapper>
-    <SearchContainer>
-      <SearchInput placeholder="Search for a city" />
-    </SearchContainer>
-    <LocationContainer>
-      <LocationList listTitle="City" list={[{ name: "Amsterdam" }]} />
-      <LocationList listTitle="District" list={[{ name: "Centrum" }]} />
-    </LocationContainer>
-  </Wrapper>
-);
+const LocationPicker = () => {
+  const [city, setCity] = useState("");
+
+  return (
+    <Wrapper>
+      <SearchContainer>
+        <SearchInput
+          onChange={setCity}
+          value={city}
+          placeholder="Search a city"
+        />
+        <SearchInput placeholder="Search a district" />
+      </SearchContainer>
+      <LocationContainer>
+        <LocationList listTitle="City" list={[{ name: "Amsterdam" }]} />
+      </LocationContainer>
+    </Wrapper>
+  );
+};
 
 export default LocationPicker;

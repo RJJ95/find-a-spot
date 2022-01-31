@@ -25,4 +25,12 @@ export const RightColumn = styled.div`
   display: flex;
   width: 50vw;
   padding: 40px;
+  flex-direction: column;
+  position: relative;
+`;
+
+export const LocationPickerContainer = styled.div`
+  position: absolute;
+  top: 140px;
+  width: calc(100% - 80px);
 `;

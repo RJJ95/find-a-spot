@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 72px;
   }
 
-  p {
+  p, span {
     font-size: 16px;
     font-family: 'Roboto Condensed', sans-serif;
   }

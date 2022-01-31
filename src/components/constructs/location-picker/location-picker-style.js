@@ -17,5 +17,24 @@ export const SearchContainer = styled.div`
 `;
 
 export const LocationContainer = styled.div`
-  padding: 20px;
+  display: flex;
+
+  > div:first-child {
+    border-right: 1px solid #ececec;
+  }
+`;
+
+export const ListContainer = styled.div`
+  width: 100%;
+`;
+
+export const Picker = styled.div`
+  cursor: pointer;
+  transition: 300ms;
+  padding: 10px;
+  background-color: ${({ selected }) => selected && "#f8f8f8"};
+
+  :hover {
+    background-color: #f8f8f8;
+  }
 `;

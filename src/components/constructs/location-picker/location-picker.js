@@ -4,14 +4,20 @@ import {
   Wrapper,
   SearchContainer,
   LocationContainer,
+  ListContainer,
+  Picker,
 } from "./location-picker-style";
 
 // Components
 import SearchInput from "../search-input";
-import LocationList from "../location-list";
 
 const LocationPicker = () => {
   const [city, setCity] = useState("");
+  const [cityResults, setCityResults] = useState([{ name: "Amsterdam" }]);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [districts, setDistricts] = useState([]);
+  const [districtResults, setDistrictResults] = useState([{ name: "Centrum" }]);
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
 
   return (
     <Wrapper>
@@ -24,7 +30,28 @@ const LocationPicker = () => {
         <SearchInput placeholder="Search a district" />
       </SearchContainer>
       <LocationContainer>
-        <LocationList listTitle="City" list={[{ name: "Amsterdam" }]} />
+        <ListContainer>
+          {cityResults.map((cityResult, index) => (
+            <Picker
+              key={index}
+              selected={cityResult.name === selectedCity}
+              onClick={() => setSelectedCity(cityResult.name)}
+            >
+              <p>{cityResult.name}</p>
+            </Picker>
+          ))}
+        </ListContainer>
+        <ListContainer>
+          {districtResults.map((districtResult, index) => (
+            <Picker
+              key={index}
+              selected={selectedDistricts.includes(districtResult.name)}
+              onClick={() => setSelectedDistricts(districtResult.name)}
+            >
+              <p>{districtResult.name}</p>
+            </Picker>
+          ))}
+        </ListContainer>
       </LocationContainer>
     </Wrapper>
   );

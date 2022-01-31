@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  padding: 20px 40px;
+  padding: 20px;
   cursor: pointer;
   transition: 300ms;
+  width: 100%;
 
   :hover {
     background-color: #f8f8f8;

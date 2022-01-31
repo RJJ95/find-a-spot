@@ -14,8 +14,8 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: 60px;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto-Medium;
+    font-size: 72px;
   }
 
   p {

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import useGetCities from "../../../api/useGetCities";
 
 // Styles
@@ -22,7 +22,7 @@ const Home = () => {
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedPersons, setSelectedPersons] = useState(1);
-  const [{ cities, isLoading, isError }, fetchCities] = useGetCities(search);
+  const [{ cities }] = useGetCities(search);
 
   return (
     <Wrapper>
@@ -30,7 +30,15 @@ const Home = () => {
         <MainTitle>find your spot.</MainTitle>
       </LeftColumn>
       <RightColumn>
-        <Filter setActiveFilter={setActiveFilter} />
+        <Filter
+          setActiveFilter={setActiveFilter}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          selectedTime={selectedTime}
+          setSelectedTime={setSelectedTime}
+          selectedPersons={selectedPersons}
+          setSelectedPersons={setSelectedPersons}
+        />
         {activeFilter === "location" && (
           <LocationPickerContainer>
             <LocationPicker

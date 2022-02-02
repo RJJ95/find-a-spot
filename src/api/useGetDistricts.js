@@ -54,7 +54,7 @@ const useGetDistricts = (selectedCity) => {
     };
 
     selectedCity && fetchData();
-  }, [url]);
+  }, [url, selectedCity]);
 
   return [state, setUrl];
 };

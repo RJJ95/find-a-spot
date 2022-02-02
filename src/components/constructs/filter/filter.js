@@ -7,22 +7,34 @@ const Filter = ({ setActiveFilter }) => {
   return (
     <Wrapper>
       <FilterInput
-        setShowFilter={() => setActiveFilter("location")}
+        setShowFilter={() =>
+          setActiveFilter((prevState) =>
+            prevState === "location" ? "" : "location"
+          )
+        }
         label="Location"
         subText="Pick a location."
       />
       <FilterInput
-        setShowFilter={() => setActiveFilter("date")}
+        setShowFilter={() =>
+          setActiveFilter((prevState) => (prevState === "date" ? "" : "date"))
+        }
         label="Date"
         subText="On which day?"
       />
       <FilterInput
-        setShowFilter={() => setActiveFilter("time")}
+        setShowFilter={() =>
+          setActiveFilter((prevState) => (prevState === "time" ? "" : "time"))
+        }
         label="Time"
         subText="At what time?"
       />
       <FilterInput
-        setShowFilter={() => setActiveFilter("people")}
+        setShowFilter={() =>
+          setActiveFilter((prevState) =>
+            prevState === "people" ? "" : "people"
+          )
+        }
         label="People"
         subText="How many guests?"
       />

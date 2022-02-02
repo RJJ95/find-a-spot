@@ -20,8 +20,7 @@ const LocationPicker = ({
   setSelectedDistricts,
 }) => {
   const [selectedCity, setSelectedCity] = useState("");
-  const [{ districts, isLoading, isError }, fetchDistricts] =
-    useGetDistricts(selectedCity);
+  const [{ districts }] = useGetDistricts(selectedCity);
 
   return (
     <Wrapper>

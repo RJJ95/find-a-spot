@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import leftColumnImage from "../../../media/images/home-bg-1.jpg";
 import rightColumnImage from "../../../media/images/diet.svg";
+import DatePicker from "react-date-picker";
 
 export const Wrapper = styled.div`
   min-height: 100vh;
@@ -36,4 +37,34 @@ export const LocationPickerContainer = styled.div`
   position: absolute;
   top: 140px;
   width: calc(100% - 80px);
+`;
+
+export const DateInput = styled(DatePicker)`
+  .react-date-picker__wrapper {
+    visibility: hidden;
+  }
+
+  .react-calendar {
+    background: #ffffff;
+    box-shadow: 0 2px 4px 0 rgba(153, 153, 153, 0.5);
+    border-radius: 50px;
+    border: none;
+    padding: 20px;
+  }
+
+  .react-calendar__month-view__days__day--weekend {
+    color: #32292f;
+  }
+
+  .react-calendar__tile--now {
+    background: #f8f8f8;
+
+    :hover {
+      background: #ececec;
+    }
+  }
+
+  .react-date-picker__wrapper {
+    height: 20px;
+  }
 `;

@@ -3,7 +3,7 @@ import FilterInput from "../filter-input";
 import PrimaryButton from "../../primitives/primary-button";
 import { ReactComponent as Search } from "../../../media/icons/search.svg";
 
-const Filter = ({ setActiveFilter }) => {
+const Filter = ({ setActiveFilter, selectedDate, selectedDistricts }) => {
   return (
     <Wrapper>
       <FilterInput
@@ -13,14 +13,23 @@ const Filter = ({ setActiveFilter }) => {
           )
         }
         label="Location"
-        subText="Pick a location."
+        subText={
+          selectedDistricts.length > 0
+            ? selectedDistricts.join(", ")
+            : "Select a location"
+        }
       />
       <FilterInput
+        type="date"
         setShowFilter={() =>
           setActiveFilter((prevState) => (prevState === "date" ? "" : "date"))
         }
         label="Date"
-        subText="On which day?"
+        subText={
+          selectedDate
+            ? new Date(selectedDate).toLocaleDateString()
+            : "On what day?"
+        }
       />
       <FilterInput
         setShowFilter={() =>

@@ -8,13 +8,14 @@ import {
   RightColumn,
   MainTitle,
   LocationPickerContainer,
+  DateInput,
 } from "./home-style";
 
 // Components
 import Filter from "../../constructs/filter";
 import LocationPicker from "../../constructs/location-picker";
 
-const Home = () => {
+const Home = ({ className }) => {
   const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
@@ -32,8 +33,8 @@ const Home = () => {
       <RightColumn>
         <Filter
           setActiveFilter={setActiveFilter}
+          selectedDistricts={selectedDistricts}
           selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
           selectedTime={selectedTime}
           setSelectedTime={setSelectedTime}
           selectedPersons={selectedPersons}
@@ -52,6 +53,12 @@ const Home = () => {
             />
           </LocationPickerContainer>
         )}
+        <DateInput
+          className={className}
+          isOpen={activeFilter === "date"}
+          value={selectedDate}
+          onChange={setSelectedDate}
+        />
       </RightColumn>
     </Wrapper>
   );

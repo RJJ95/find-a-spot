@@ -14,6 +14,7 @@ import {
 // Components
 import Filter from "../../constructs/filter";
 import LocationPicker from "../../constructs/location-picker";
+import TimeInput from "../../constructs/time-input";
 
 const Home = ({ className }) => {
   const [search, setSearch] = useState("");
@@ -59,6 +60,9 @@ const Home = ({ className }) => {
           value={selectedDate}
           onChange={setSelectedDate}
         />
+        {activeFilter === "time" && (
+          <TimeInput value={selectedTime} onChange={setSelectedTime} />
+        )}
       </RightColumn>
     </Wrapper>
   );

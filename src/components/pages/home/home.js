@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useGetCities from "../../../api/useGetCities";
 
 // Styles
 import {
@@ -14,7 +15,15 @@ import Filter from "../../constructs/filter";
 import LocationPicker from "../../constructs/location-picker";
 
 const Home = () => {
+  const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedDistricts, setSelectedDistricts] = useState([]);
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedPersons, setSelectedPersons] = useState(1);
+  const [{ cities, isLoading, isError }, fetchCities] = useGetCities(search);
+
   return (
     <Wrapper>
       <LeftColumn>
@@ -24,7 +33,15 @@ const Home = () => {
         <Filter setActiveFilter={setActiveFilter} />
         {activeFilter === "location" && (
           <LocationPickerContainer>
-            <LocationPicker />
+            <LocationPicker
+              cities={cities}
+              selectedCity={selectedCity}
+              setSelectedCity={setSelectedCity}
+              search={search}
+              setSearch={setSearch}
+              selectedDistricts={selectedDistricts}
+              setSelectedDistricts={setSelectedDistricts}
+            />
           </LocationPickerContainer>
         )}
       </RightColumn>

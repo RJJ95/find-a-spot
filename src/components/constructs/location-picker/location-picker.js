@@ -1,4 +1,5 @@
 import { useState } from "react";
+import useGetDistricts from "../../../api/useGetDistricts";
 
 import {
   Wrapper,
@@ -11,46 +12,52 @@ import {
 // Components
 import SearchInput from "../search-input";
 
-const LocationPicker = () => {
-  const [city, setCity] = useState("");
-  const [cityResults, setCityResults] = useState([{ name: "Amsterdam" }]);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [districts, setDistricts] = useState([]);
-  const [districtResults, setDistrictResults] = useState([{ name: "Centrum" }]);
-  const [selectedDistricts, setSelectedDistricts] = useState([]);
+const LocationPicker = ({
+  cities,
+  search,
+  setSearch,
+  selectedDistricts,
+  setSelectedDistricts,
+}) => {
+  const [selectedCity, setSelectedCity] = useState("");
+  const [{ districts, isLoading, isError }, fetchDistricts] =
+    useGetDistricts(selectedCity);
 
   return (
     <Wrapper>
       <SearchContainer>
         <SearchInput
-          onChange={setCity}
-          value={city}
+          onChange={setSearch}
+          value={search}
           placeholder="Search a city"
         />
         <SearchInput placeholder="Search a district" />
       </SearchContainer>
       <LocationContainer>
         <ListContainer>
-          {cityResults.map((cityResult, index) => (
+          {cities.map((city, index) => (
             <Picker
               key={index}
-              selected={cityResult.name === selectedCity}
-              onClick={() => setSelectedCity(cityResult.name)}
+              selected={city === selectedCity}
+              onClick={() => setSelectedCity(city)}
             >
-              <p>{cityResult.name}</p>
+              <p>{city}</p>
             </Picker>
           ))}
         </ListContainer>
         <ListContainer>
-          {districtResults.map((districtResult, index) => (
-            <Picker
-              key={index}
-              selected={selectedDistricts.includes(districtResult.name)}
-              onClick={() => setSelectedDistricts(districtResult.name)}
-            >
-              <p>{districtResult.name}</p>
-            </Picker>
-          ))}
+          {districts &&
+            districts.map((district, index) => (
+              <Picker
+                key={index}
+                selected={selectedDistricts.includes(district)}
+                onClick={() =>
+                  setSelectedDistricts((prevState) => [...prevState, district])
+                }
+              >
+                <p>{district}</p>
+              </Picker>
+            ))}
         </ListContainer>
       </LocationContainer>
     </Wrapper>

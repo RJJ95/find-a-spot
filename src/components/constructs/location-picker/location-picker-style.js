@@ -18,6 +18,8 @@ export const SearchContainer = styled.div`
 
 export const LocationContainer = styled.div`
   display: flex;
+  max-height: 350px;
+  overflow: scroll;
 
   > div:first-child {
     border-right: 1px solid #ececec;

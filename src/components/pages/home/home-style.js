@@ -21,6 +21,11 @@ export const LeftColumn = styled.div`
 
 export const MainTitle = styled.h1`
   color: #ffffff;
+  pointer-events: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
 `;
 
 export const RightColumn = styled.div`
@@ -33,15 +38,10 @@ export const RightColumn = styled.div`
   background-size: 70%;
 `;
 
-export const LocationPickerContainer = styled.div`
-  position: absolute;
-  top: 140px;
-  width: calc(100% - 80px);
-`;
-
 export const DateInput = styled(DatePicker)`
   .react-date-picker__wrapper {
     visibility: hidden;
+    height: 20px;
   }
 
   .react-calendar {
@@ -67,4 +67,11 @@ export const DateInput = styled(DatePicker)`
   .react-date-picker__wrapper {
     height: 20px;
   }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
 `;

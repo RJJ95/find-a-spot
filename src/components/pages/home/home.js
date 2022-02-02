@@ -7,14 +7,15 @@ import {
   LeftColumn,
   RightColumn,
   MainTitle,
-  LocationPickerContainer,
   DateInput,
+  InputContainer,
 } from "./home-style";
 
 // Components
 import Filter from "../../constructs/filter";
 import LocationPicker from "../../constructs/location-picker";
 import TimeInput from "../../constructs/time-input";
+import PersonInput from "../../constructs/person-input";
 
 const Home = ({ className }) => {
   const [search, setSearch] = useState("");
@@ -23,26 +24,24 @@ const Home = ({ className }) => {
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
-  const [selectedPersons, setSelectedPersons] = useState(1);
+  const [selectedPeople, setSelectedPeople] = useState("");
   const [{ cities }] = useGetCities(search);
 
   return (
-    <Wrapper>
-      <LeftColumn>
+    <Wrapper onClick={(e) => e.target.id === "main" && setActiveFilter("")}>
+      <LeftColumn id="main">
         <MainTitle>find your spot.</MainTitle>
       </LeftColumn>
-      <RightColumn>
+      <RightColumn id="main">
         <Filter
           setActiveFilter={setActiveFilter}
           selectedDistricts={selectedDistricts}
           selectedDate={selectedDate}
           selectedTime={selectedTime}
-          setSelectedTime={setSelectedTime}
-          selectedPersons={selectedPersons}
-          setSelectedPersons={setSelectedPersons}
+          selectedPeople={selectedPeople}
         />
         {activeFilter === "location" && (
-          <LocationPickerContainer>
+          <InputContainer>
             <LocationPicker
               cities={cities}
               selectedCity={selectedCity}
@@ -52,16 +51,25 @@ const Home = ({ className }) => {
               selectedDistricts={selectedDistricts}
               setSelectedDistricts={setSelectedDistricts}
             />
-          </LocationPickerContainer>
+          </InputContainer>
         )}
-        <DateInput
-          className={className}
-          isOpen={activeFilter === "date"}
-          value={selectedDate}
-          onChange={setSelectedDate}
-        />
+        {activeFilter === "date" && (
+          <DateInput
+            className={className}
+            isOpen={true}
+            value={selectedDate}
+            onChange={setSelectedDate}
+          />
+        )}
         {activeFilter === "time" && (
-          <TimeInput value={selectedTime} onChange={setSelectedTime} />
+          <InputContainer>
+            <TimeInput value={selectedTime} onChange={setSelectedTime} />
+          </InputContainer>
+        )}
+        {activeFilter === "people" && (
+          <InputContainer>
+            <PersonInput value={selectedPeople} onChange={setSelectedPeople} />
+          </InputContainer>
         )}
       </RightColumn>
     </Wrapper>

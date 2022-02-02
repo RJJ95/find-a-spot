@@ -8,6 +8,7 @@ const Filter = ({
   selectedDate,
   selectedDistricts,
   selectedTime,
+  selectedPeople,
 }) => {
   return (
     <Wrapper>
@@ -50,7 +51,7 @@ const Filter = ({
           )
         }
         label="People"
-        subText="How many guests?"
+        subText={selectedPeople ? selectedPeople : "How many guests?"}
       />
       <ButtonContainer>
         <PrimaryButton>

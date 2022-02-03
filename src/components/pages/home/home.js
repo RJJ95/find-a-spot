@@ -68,7 +68,7 @@ const Home = ({ className }) => {
         )}
         {activeFilter === "people" && (
           <InputContainer>
-            <PersonInput value={selectedPeople} onChange={setSelectedPeople} />
+            <PersonInput value={selectedPeople} onClick={setSelectedPeople} />
           </InputContainer>
         )}
       </RightColumn>

@@ -52,6 +52,10 @@ export const DateInput = styled(DatePicker)`
     padding: 20px;
   }
 
+  .react-date-picker__calendar {
+    left: calc(50% - 175px) !important;
+  }
+
   .react-calendar__month-view__days__day--weekend {
     color: #32292f;
   }
@@ -70,8 +74,8 @@ export const DateInput = styled(DatePicker)`
 `;
 
 export const InputContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 20px;
+  position: absolute;
+  top: 135px;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;

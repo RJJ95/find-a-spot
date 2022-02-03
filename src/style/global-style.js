@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
   h1 {
     font-family: Roboto-Medium;
     font-size: 72px;
+
+    @media (max-width: 640px) {
+      font-size: 54px;
+    }
   }
 
   p, span {

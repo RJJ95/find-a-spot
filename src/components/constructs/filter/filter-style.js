@@ -6,7 +6,6 @@ export const Wrapper = styled.div`
   box-shadow: 0 2px 4px 0 rgba(153, 153, 153, 0.5);
   border-radius: 50px;
   overflow: hidden;
-  width: 100%;
   height: 75px;
   justify-content: space-between;
 
@@ -16,6 +15,10 @@ export const Wrapper = styled.div`
 
   div:not(:last-child) {
     border-right: 1px solid #ececec;
+  }
+
+  @media (max-width: 640px) {
+    width: fit-content;
   }
 `;
 

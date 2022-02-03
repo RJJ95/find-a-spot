@@ -9,4 +9,8 @@ export const Input = styled.input`
   outline: none;
   width: fit-content;
   font-family: "Roboto Condensed", sans-serif;
+
+  @media (max-width: 640px) {
+    width: 100px;
+  }
 `;

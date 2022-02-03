@@ -9,6 +9,7 @@ import {
   MainTitle,
   DateInput,
   InputContainer,
+  FilterContainer,
 } from "./home-style";
 
 // Components
@@ -18,14 +19,15 @@ import TimeInput from "../../constructs/time-input";
 import PersonInput from "../../constructs/person-input";
 
 const Home = ({ className }) => {
-  const [search, setSearch] = useState("");
   const [activeFilter, setActiveFilter] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedDistricts, setSelectedDistricts] = useState([]);
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedTime, setSelectedTime] = useState("");
   const [selectedPeople, setSelectedPeople] = useState("");
-  const [{ cities }] = useGetCities(search);
+  const [citySearch, setCitySearch] = useState("");
+  const [districtSearch, setDistrictSearch] = useState("");
+  const [{ cities, fetchingCities }] = useGetCities(citySearch);
 
   return (
     <Wrapper onClick={(e) => e.target.id === "main" && setActiveFilter("")}>
@@ -33,21 +35,26 @@ const Home = ({ className }) => {
         <MainTitle>find your spot.</MainTitle>
       </LeftColumn>
       <RightColumn id="main">
-        <Filter
-          setActiveFilter={setActiveFilter}
-          selectedDistricts={selectedDistricts}
-          selectedDate={selectedDate}
-          selectedTime={selectedTime}
-          selectedPeople={selectedPeople}
-        />
+        <FilterContainer>
+          <Filter
+            setActiveFilter={setActiveFilter}
+            selectedDistricts={selectedDistricts}
+            selectedDate={selectedDate}
+            selectedTime={selectedTime}
+            selectedPeople={selectedPeople}
+          />
+        </FilterContainer>
         {activeFilter === "location" && (
           <InputContainer>
             <LocationPicker
               cities={cities}
+              citiesLoading={fetchingCities}
               selectedCity={selectedCity}
               setSelectedCity={setSelectedCity}
-              search={search}
-              setSearch={setSearch}
+              citySearch={citySearch}
+              setCitySearch={setCitySearch}
+              districtSearch={districtSearch}
+              setDistrictSearch={setDistrictSearch}
               selectedDistricts={selectedDistricts}
               setSelectedDistricts={setSelectedDistricts}
             />

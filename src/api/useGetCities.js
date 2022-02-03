@@ -6,20 +6,20 @@ const citiesFetchReducer = (state, action) => {
     case "FETCH_INIT":
       return {
         ...state,
-        isLoading: true,
+        fetchingCities: true,
         isError: false,
       };
     case "FETCH_SUCCESS":
       return {
         ...state,
-        isLoading: false,
+        fetchingCities: false,
         isError: false,
         cities: action.payload,
       };
     case "FETCH_FAILURE":
       return {
         ...state,
-        isLoading: false,
+        fetchingCities: false,
         isError: true,
       };
     default:
@@ -28,13 +28,17 @@ const citiesFetchReducer = (state, action) => {
 };
 
 const useGetCities = (search) => {
-  const [url, setUrl] = useState(`cities${search ? `/?search=${search}` : ""}`);
+  const [url, setUrl] = useState(`cities`);
 
   const [state, dispatch] = useReducer(citiesFetchReducer, {
-    isLoading: false,
+    fetchingCities: false,
     isError: false,
     cities: null,
   });
+
+  useEffect(() => {
+    setUrl(`cities${search ? `/?search=${search}` : ""}`);
+  }, [search]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,8 +53,12 @@ const useGetCities = (search) => {
       }
     };
 
-    fetchData();
-  }, [url]);
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [url, search]);
 
   return [state, setUrl];
 };

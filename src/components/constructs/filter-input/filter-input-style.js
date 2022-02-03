@@ -9,6 +9,10 @@ export const Wrapper = styled.div`
   :hover {
     background-color: #f8f8f8;
   }
+
+  @media (max-width: 640px) {
+    width: max-content;
+  }
 `;
 
 export const Label = styled.p`

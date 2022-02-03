@@ -14,35 +14,45 @@ import SearchInput from "../search-input";
 
 const LocationPicker = ({
   cities,
-  search,
-  setSearch,
+  citySearch,
+  setCitySearch,
+  districtSearch,
+  setDistrictSearch,
   selectedDistricts,
   setSelectedDistricts,
+  citiesLoading,
 }) => {
   const [selectedCity, setSelectedCity] = useState("");
-  const [{ districts }] = useGetDistricts(selectedCity);
+  const [{ districts, fetchingDistricts }] = useGetDistricts(selectedCity);
 
   return (
     <Wrapper>
       <SearchContainer>
         <SearchInput
-          onChange={setSearch}
-          value={search}
+          onChange={setCitySearch}
+          value={citySearch}
           placeholder="Search a city"
+          isLoading={citiesLoading}
         />
-        <SearchInput placeholder="Search a district" />
+        <SearchInput
+          value={districtSearch}
+          onChange={setDistrictSearch}
+          placeholder="Search a district"
+          isLoading={fetchingDistricts}
+        />
       </SearchContainer>
       <LocationContainer>
         <ListContainer>
-          {cities.map((city, index) => (
-            <Picker
-              key={index}
-              selected={city === selectedCity}
-              onClick={() => setSelectedCity(city)}
-            >
-              <p>{city}</p>
-            </Picker>
-          ))}
+          {cities &&
+            cities.map((city, index) => (
+              <Picker
+                key={index}
+                selected={city === selectedCity}
+                onClick={() => setSelectedCity(city)}
+              >
+                <p>{city}</p>
+              </Picker>
+            ))}
         </ListContainer>
         <ListContainer>
           {districts &&

@@ -6,6 +6,7 @@ const TimeInput = ({ value, onChange }) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       type="time"
+      placeholder="00:00"
     />
   );
 };

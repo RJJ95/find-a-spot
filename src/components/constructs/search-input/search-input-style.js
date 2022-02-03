@@ -5,8 +5,18 @@ export const Input = styled.input`
   border: none;
   font-size: 14px;
   color: #999999;
-  text-align: left;
   border-bottom: 1px solid #ececec;
   width: 100%;
   outline: none;
+`;
+
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+export const SpinnerContainer = styled.div`
+  position: absolute;
+  top: 3px;
+  right: 10px;
 `;

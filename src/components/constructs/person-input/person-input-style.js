@@ -10,6 +10,9 @@ export const Wrapper = styled.div`
   font-family: "Roboto Condensed", sans-serif;
   display: flex;
   gap: 20px;
+
+  @media (max-width: 640px) {
+  }
 `;
 
 export const Selector = styled.button`
@@ -22,5 +25,9 @@ export const Selector = styled.button`
 
   :hover {
     background-color: #f8f8f8;
+  }
+
+  @media (max-width: 640px) {
+    padding: 5px 15px;
   }
 `;

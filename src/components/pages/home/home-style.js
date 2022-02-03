@@ -7,6 +7,10 @@ export const Wrapper = styled.div`
   min-height: 100vh;
   background-color: #f8f5f3;
   display: flex;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftColumn = styled.div`
@@ -17,6 +21,11 @@ export const LeftColumn = styled.div`
     url(${leftColumnImage}) no-repeat center;
   background-size: cover;
   width: 50vw;
+
+  @media (max-width: 640px) {
+    width: 100vw;
+    height: 25vh;
+  }
 `;
 
 export const MainTitle = styled.h1`
@@ -36,6 +45,12 @@ export const RightColumn = styled.div`
   position: relative;
   background: url(${rightColumnImage}) no-repeat center;
   background-size: 70%;
+
+  @media (max-width: 640px) {
+    width: 100vw;
+    min-height: 75vh;
+    padding: 20px 0 20px 0;
+  }
 `;
 
 export const DateInput = styled(DatePicker)`
@@ -78,4 +93,26 @@ export const InputContainer = styled.div`
   top: 135px;
   left: 50%;
   transform: translate(-50%, 0);
+
+  @media (max-width: 640px) {
+    top: 115px;
+  }
+`;
+
+export const FilterContainer = styled.div`
+  overflow: scroll;
+  height: fit-content;
+  width: 100%;
+  height: 80px;
+
+  @media (max-width: 640px) {
+    padding-left: 20px;
+    padding-right: 20px;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;

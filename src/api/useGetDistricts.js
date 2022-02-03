@@ -6,20 +6,20 @@ const districtsFetchReducer = (state, action) => {
     case "FETCH_INIT":
       return {
         ...state,
-        isLoading: true,
+        fetchingDistricts: true,
         isError: false,
       };
     case "FETCH_SUCCESS":
       return {
         ...state,
-        isLoading: false,
+        fetchingDistricts: false,
         isError: false,
         districts: action.payload,
       };
     case "FETCH_FAILURE":
       return {
         ...state,
-        isLoading: false,
+        fetchingDistricts: false,
         isError: true,
       };
     default:
@@ -31,7 +31,7 @@ const useGetDistricts = (selectedCity) => {
   const [url, setUrl] = useState("");
 
   const [state, dispatch] = useReducer(districtsFetchReducer, {
-    isLoading: false,
+    fetchingDistricts: false,
     isError: false,
     districts: null,
   });

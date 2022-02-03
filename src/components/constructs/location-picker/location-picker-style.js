@@ -4,14 +4,19 @@ export const Wrapper = styled.div`
   background: #ffffff;
   box-shadow: 0 2px 4px 0 rgba(153, 153, 153, 0.5);
   border-radius: 50px;
-  overflow: hidden;
   padding: 20px 40px;
+  min-width: 500px;
+
+  @media (max-width: 640px) {
+    min-width: 350px;
+  }
 `;
 
 export const SearchContainer = styled.div`
   display: flex;
+  width: 100%;
 
-  input:first-child {
+  div:first-child {
     border-right: 1px solid #ececec;
   }
 `;
@@ -21,7 +26,7 @@ export const LocationContainer = styled.div`
   max-height: 350px;
   overflow: scroll;
 
-  > div:first-child {
+  div:first-child div {
     border-right: 1px solid #ececec;
   }
 `;
